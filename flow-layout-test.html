@@ -11,6 +11,15 @@
   {{> Template.dynamic template=main}}
 </template>
 
+<template name="players">
+  
+  {{> nymphs}}
+  {{> nymphMachine}}
+  
+  {{> player_infos}}
+  {{> players_infos}}
+</template>
+
 <template name="header">
   <h1>This is the header</h1>
 </template>
@@ -23,20 +32,50 @@
   <h2>This is the singlePost area.</h2>
 </template>
 
+<template name="nymphMachine">
+  <div>
+    <form>
+  Nymph's name: <input type="text" id="nymphField"><br>
+   <input type="submit" id="nymphButton" value="Make a nymph">
+    </form>
+<br/>
+    <button id="removeNymphs" >
+      Clear out the nymphs
+    </button>
+    <br/>    <br/>    <br/>
+  </div>
+</template>
+
+<template name="nymphs">
+  {{ #each nymphs }}
+    <ul>{{ nymph }}</ul>
+  {{/each}}
+
+</template>
+
 <template name="player_infos">
   <div>
- With: <br/>
+ <i>'With player' tags:</i> <br/>
     {{#with player }}
    name: {{name }} - score: {{ score }}
     {{/with}}
+  </div>
+  <div>
+    <i>   dot notation (player.name):</i>
+    {{ player.name }}:
+    {{ player.score }}
   </div>
 </template>
 
 <template name="players_infos">
   <div>
- Each: <br/>
-    {{#each players }}
-   name: {{name }} - score: {{ score }}
- {{/each}}
- </div>
+    <br/> <br/>
+    <i> 'Each player' tags:</i>
+    <div>    
+      {{#each players }}
+      <ul>
+	name: {{name }} - score: {{ score }}</ul>
+      {{/each}}
+    </div>
+  </div>
 </template>
